@@ -134,9 +134,13 @@ router.get('/', auth, async (req, res) => {
 
 // Get single stock item
 router.get('/:id', auth, async (req, res) => {
+  console.log('here');
+  console.log(req.params);
+  
   try {
     const stock = await Stock.findOne({ _id: req.params.id});
     if (!stock) {
+      
       return res.status(404).json({ message: 'Stock item not found' });
     }
     console.log('Fetched stock item:', {
